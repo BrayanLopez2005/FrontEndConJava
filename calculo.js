@@ -59,3 +59,21 @@ function mostrarResumen(color, adicionales, totalFinal) {
   `;
 }
 
+
+document.getElementById('color').addEventListener('change', function () {
+  actualizarImagen(this.value);
+});
+
+
+document.getElementById('formAuto').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  if (!validarFormulario()) return;
+
+  const color = document.getElementById('color').value;
+  const recargo = RECARGOS_COLOR[color];
+  const { seleccionados, total } = obtenerAdicionales();
+  const totalFinal = VALOR_BASE + recargo + total;
+
+  mostrarResumen(color, seleccionados, totalFinal);
+});

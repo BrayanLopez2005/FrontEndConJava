@@ -12,3 +12,28 @@ const ADICIONALES = [
   { id: "camara", nombre: "Cámara trasera", valor: 100000 }
 ];
 
+
+document.getElementById('color').addEventListener('change', function () {
+  const color = this.value;
+  const imagen = document.getElementById('imagenAuto');
+  imagen.src = `Imagenes/kia_${color}.webp`;
+  imagen.alt = `Auto ${color}`;
+});
+
+
+function obtenerAdicionales() {
+  let seleccionados = [];
+  let total = 0;
+
+  ADICIONALES.forEach(adicional => {
+    const checkbox = document.getElementById(adicional.id);
+    if (checkbox.checked) {
+      seleccionados.push(`${adicional.nombre} ($${adicional.valor.toLocaleString()})`);
+      total += adicional.valor;
+    }
+  });
+
+  return { seleccionados, total };
+}
+
+
